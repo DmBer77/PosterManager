@@ -1,53 +1,34 @@
 package ru.netology.repository;
 
 public class PostersManager {
+    private final PostersRepository repository;
 
-    protected String [] posters = new String[0];
-    protected int numberOfResentFilm;
-
-    public PostersManager() {
-        numberOfResentFilm = 10;
-    }
-    public PostersManager(int numberOfResentFilm) {
-        this.numberOfResentFilm = numberOfResentFilm;
+    public PostersManager(PostersRepository repository) {
+        this.repository = repository;
     }
 
-    public void addNewPosters(String posterForAdd) {
-        String [] tmp = new String[posters.length + 1];
-        for (int i = 0; i < posters.length; i++) {
-            tmp[i] = posters[i];
-        }
-        tmp[tmp.length - 1] = posterForAdd;
-        posters = tmp;
+    public void addNewPosters(String poster) {
+        repository.addNewPosters(poster);
     }
 
-    public void removePosters(String posterForRemove) {
-        String[] tmp = new String[posters.length - 1];
-        int copyToIndex = 0;
-        for (String poster : posters) {
-            if (!poster.equals(posterForRemove)) {
-                tmp[copyToIndex] = poster;
-                copyToIndex++;
-            }
-        }
-        posters = tmp;
+    public void removePosters(String poster) {
+        repository.removePosters(poster);
     }
 
-    public String [] findAll() {
-        return posters;
+    public void removeAll() {
+        repository.removeAll();
     }
 
-    public String [] findLast() {
-        int resultLength;
-        if (posters.length < numberOfResentFilm){
-            resultLength = posters.length;
-        } else {
-            resultLength = numberOfResentFilm;
-        }
-        String[] resentPosters = new String[resultLength];
-        for (int i = 0; i < resentPosters.length; i++) {
-            resentPosters[i] = posters[posters.length - 1 - i];
-        }
-        return resentPosters;
+    public String[] findAll() {
+        return repository.findAll();
     }
+
+    public String[] findLast() {
+        return repository.findLast();
+    }
+
+    public void findByName(String poster) {
+        repository.findByName(poster);
+    }
+
 }
