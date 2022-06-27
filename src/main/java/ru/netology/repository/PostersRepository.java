@@ -57,17 +57,27 @@ public class PostersRepository {
         return resentPosters;
     }
 
-    public void findByName(String posterName) {
+    public String [] findByName(String posterName) {
         String[] tmp = new String[1];
+        int copyToIndex = 0;
         for (String poster : posters) {
             if (poster.equals(posterName)) {
-                tmp[0] = posterName;
-                return;
+                tmp[copyToIndex] = poster;
+                copyToIndex++;
             } else {
-                tmp[0] = null;
+                tmp[copyToIndex] = "null";
             }
-            posters = tmp;
         }
+        posters = tmp;
+        return posters;
+    }
+
+    public int countAllElements() {
+        int cnt = 0;
+        for (String poster : posters) {
+            cnt++;
+        }
+        return cnt;
     }
 
 }

@@ -203,7 +203,7 @@ public class PostersManagerTest {
         manager.findByName("F2");
 
         String[] expected = {"F2"};
-        String[] actual = manager.findAll();
+        String[] actual = manager.findByName("F2");
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -217,8 +217,8 @@ public class PostersManagerTest {
 
         manager.findByName("F2");
 
-        String[] expected = {null};
-        String[] actual = manager.findAll();
+        String[] expected = {"null"};
+        String[] actual = manager.findByName("F2");
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -234,5 +234,23 @@ public class PostersManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldCountAllElements() {
+        PostersManager manager = new PostersManager(new PostersRepository());
+        manager.addNewPosters("F1");
+        manager.addNewPosters("F2");
+        manager.addNewPosters("F3");
+        manager.addNewPosters("F4");
+        manager.addNewPosters("F5");
+
+        manager.countAllElements();
+
+        int expected = 5;
+        int actual = manager.countAllElements();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
 
 }

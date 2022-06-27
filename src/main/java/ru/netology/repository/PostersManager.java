@@ -27,8 +27,11 @@ public class PostersManager {
         return repository.findLast();
     }
 
-    public void findByName(String poster) {
-        repository.findByName(poster);
+    public String [] findByName(String poster) {
+        return repository.findByName(poster);
     }
 
+    public int countAllElements () {
+        return repository.countAllElements();
+    }
 }
